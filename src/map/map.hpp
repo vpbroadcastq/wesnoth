@@ -197,9 +197,6 @@ public:
 	// Also expose this for the same reason:
 	const terrain_type& get_terrain_info(const t_translation::terrain_code & terrain) const;
 
-	/* Get the underlying terrain_type_data object. */
-	const std::shared_ptr<terrain_type_data>& tdata() const { return tdata_; }
-
 	/**
 	 * Loads a map.
 	 *
@@ -251,8 +248,6 @@ private:
 	 * @param data		          The mapdata to load.
 	 */
 	std::string_view strip_legacy_header(std::string_view data) const;
-
-	std::shared_ptr<terrain_type_data> tdata_;
 
 protected:
 	std::vector<map_location> villages_;

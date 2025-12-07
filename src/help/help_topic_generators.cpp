@@ -101,7 +101,7 @@ typedef t_translation::ter_list::const_iterator ter_iter;
 std::string print_behavior_description(
 	const ter_iter& start,
 	const ter_iter& end,
-	const std::shared_ptr<terrain_type_data>& tdata,
+	const terrain_type_data* tdata,
 	bool first_level = true,
 	bool begin_best = true)
 {
@@ -219,7 +219,7 @@ std::string terrain_topic_generator::operator()() const {
 		ss << type_.help_topic_text().str() << "\n";
 	}
 
-	std::shared_ptr tdata = terrain_type_data::get();
+	const terrain_type_data* tdata = terrain_type_data::get();
 	if(!tdata) {
 		WRN_HP << "When building terrain help topics, we couldn't acquire any terrain types data";
 		return ss.str();
@@ -824,7 +824,7 @@ std::string unit_topic_generator::operator()() const {
 	// Terrain Modifiers table
 	//
 	std::stringstream().swap(table_ss);
-	if(std::shared_ptr tdata = terrain_type_data::get()) {
+	if(terrain_type_data* tdata = terrain_type_data::get()) {
 		// Print the terrain modifier table of the unit.
 		ss << "\n" << markup::tag("header", _("Terrain Modifiers"));
 

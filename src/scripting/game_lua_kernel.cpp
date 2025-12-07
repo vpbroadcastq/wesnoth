@@ -1101,7 +1101,7 @@ int game_lua_kernel::impl_get_terrain_info(lua_State *L)
 {
 	char const *m = luaL_checkstring(L, 2);
 	t_translation::terrain_code t = t_translation::read_terrain_code(m);
-	if (t == t_translation::NONE_TERRAIN || !map().tdata()->is_known(t)) return 0;
+	if (t == t_translation::NONE_TERRAIN || !terrain_type_data::get()->is_known(t)) return 0;
 	const terrain_type& info = map().get_terrain_info(t);
 
 	lua_newtable(L);

@@ -284,7 +284,7 @@ int movetype::terrain_info::data::calc_value(
 		return params_.default_value;
 	}
 
-	std::shared_ptr tdata = terrain_type_data::get();
+	const terrain_type_data* tdata = terrain_type_data::get();
 	assert(tdata);
 
 	// Get a list of underlying terrains.
